@@ -1,8 +1,10 @@
 #pragma once
 #include "Event.h"
 #include "Location.h"
+#include "Util.h"
+#include "main.cpp"
 
-enum TicketType { ONLINE, PREPAID, CASH};
+enum TicketType { ONLINE, PREPAID, CASH };
 
 class Ticket {
 private:
@@ -15,4 +17,13 @@ private:
 	TicketType type;
 
 	static int NO_VALID_TICKETS;
+
+public:
+	char* getTicketId() {
+		return this->ticketId;
+	}
+
+	double getPrice() {
+		return this->price;
+	}
 };

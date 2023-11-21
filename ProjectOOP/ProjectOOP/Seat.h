@@ -1,5 +1,7 @@
 #pragma once
 #include "Location.h"
+#include "Util.h"
+#include "main.cpp"
 
 class Seat {
 private:
