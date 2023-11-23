@@ -7,7 +7,7 @@ enum class ZoneType { STAND1, STAND2, CATEGORY1, CATEGORY2, BOX, VIP, NORMAL };
 
 class Location {
 private:
-	string locationId=nullptr;
+	char* locationId=nullptr;
 	const string locationName;
 	ZoneType type;
 
@@ -16,11 +16,10 @@ private:
 
 public:
 	string getLocationId() {
-		return this->locationId;
-	}
-
-	string getLocationName() {
-		return this->locationName;
+		if (this->locationId != nullptr)
+			return string(this->locationId);
+		else
+			return "";
 	}
 
 	static int getMaxNoSeats() {
@@ -35,4 +34,8 @@ public:
 		this->type = type;
 	}
 
+	//default constructor
+
+	Location(string locationName) : locationName(locationName) {
+	}
 };

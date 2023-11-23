@@ -11,14 +11,16 @@ private:
 	char* name = nullptr;
 	char date[11];      // dd/mm/yyy
 	char startingHour[6];       // hh/mm
-	int duration=0;       // in min
-	int breakDuration=0;  // in min
+	int duration = 0;       // in min
+	int breakDuration = 0;  // in min
 	EventType type;
 	Location* name;
 
-	char* getName() {
-		char* copy = Util::copyString(this->name);
-		return copy;
+	string name() {
+		if (this->name!= nullptr)
+			return string(this->name);
+		else
+			return "";
 	}
 	char* getDate() {
 		return Util::copyString(this->date);
@@ -38,3 +40,4 @@ private:
 	void getEventType(EventType type) {
 		this->type = type;
 	}
+}
