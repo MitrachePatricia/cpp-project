@@ -12,9 +12,10 @@ private:
 	ZoneType type;
 
 	static int MAX_NO_SEATS;
-	const int NO_SEATS_PER_ROW;
 
 public:
+
+	//getters
 	string getLocationId() {
 		if (this->locationId != nullptr)
 			return string(this->locationId);
@@ -26,13 +27,14 @@ public:
 		return Location::MAX_NO_SEATS;
 	}
 
-	const int getNoSeatsPerRow() {
-		return Location::NO_SEATS_PER_ROW;
-	}
-
-	void setZoneType(ZoneType type) {
+    ZoneType getZoneType() {
 		this->type = type;
 	}
+
+	//setters
+
+	void setLocationId();
+	void setType();
 
 	//default constructor
 

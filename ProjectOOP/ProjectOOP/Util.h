@@ -42,7 +42,7 @@ public:
 		case EventType::THEATRE:
 			return "Theatre";
 		default:
-			throw exception("Event is unknown/unexistent.")
+			throw exception("Event is unknown/inexistent.");
 
 		}
 	}

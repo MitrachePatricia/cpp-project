@@ -16,8 +16,11 @@ private:
 	EventType type;
 	Location* name;
 
-	string name() {
-		if (this->name!= nullptr)
+public:
+
+	//getters
+	string getName() {
+		if (this->name != nullptr)
 			return string(this->name);
 		else
 			return "";
@@ -37,7 +40,16 @@ private:
 		return this->duration;
 	}
 
-	void getEventType(EventType type) {
+	EventType getEventType() {
 		this->type = type;
 	}
-}
+
+	//setters
+
+	void setName();
+	void setDate();
+	void setStartingHour();
+	void setDuration();
+	void setBreakDuration();
+
+};

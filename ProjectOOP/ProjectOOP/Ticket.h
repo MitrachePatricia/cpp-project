@@ -19,6 +19,8 @@ private:
 	static int NO_VALID_TICKETS;
 
 public:
+
+	//getters
 	char* getTicketId() {
 		return this->ticketId;
 	}
@@ -26,4 +28,17 @@ public:
 	double getPrice() {
 		return this->price;
 	}
+
+	//setters
+	
+	void setTicketId(string tId) {
+		delete[] this->ticketId;
+		this->ticketId = Util::copyString(tId.c_str());
+	}
+
+	TicketType getTicketType() {
+		this->type = type;
+	}
+
+	void setPrice();
 };
