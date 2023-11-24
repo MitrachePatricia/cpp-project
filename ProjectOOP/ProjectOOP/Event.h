@@ -2,19 +2,18 @@
 #include "Location.h"
 #include "Util.h"
 #include "main.cpp"
+#include "seat.h"
 	
-
-enum class EventType{SPORTSMATCH, MOVIE, THEATRE};
 
 class Event {
 private:
 	char* name = nullptr;
 	char date[11];      // dd/mm/yyy
-	char startingHour[6];       // hh/mm
+	char startingHour[6];       // hh:mm
 	int duration = 0;       // in min
-	int breakDuration = 0;  // in min
-	EventType type;
 	Location* name;
+	Seat* seatNumber;
+	Seat* row;
 
 public:
 
@@ -36,20 +35,39 @@ public:
 	int getDuration() {
 		return this->duration;
 	}
-	int getBreakDuration() {
-		return this->duration;
-	}
 
-	EventType getEventType() {
-		this->type = type;
-	}
-
+	
 	//setters
 
-	void setName();
-	void setDate();
-	void setStartingHour();
-	void setDuration();
-	void setBreakDuration();
+	void setName(const char* newName) {
+		if (newName[0] < 'A' || newName[0]>'Z')
+			throw exception("There are no movies ");
+
+		this->name = Util::copyString(newName);
+	}
+	void setDate(const char* newDate) {
+		if (strlen(newDate) != 10) {
+			throw exception("The introduced date is wrong!");
+		}
+		if (newDate[2] != '/' || newDate[5] != '/') {
+			throw exception("The data format is wrong");
+		}
+
+		strcpy_s(this->date, newDate);
+	}
+	void setStartingHour(const char* newStartingHour) {
+		if (strlen(newStartingHour) != 5) {
+			throw exception("The introduced hour is wrong!");
+		}
+		if (newStartingHour[2] != ':') {
+			throw exception("The hour format is wrong");
+		}
+
+		strcpy_s(this->startingHour, newStartingHour);
+	}
+
+	void setDuration(int newDuration) {
+		this->duration = newDuration;
+	}
 
 };

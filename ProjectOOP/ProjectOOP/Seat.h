@@ -3,13 +3,16 @@
 #include "Util.h"
 #include "main.cpp"
 
+enum class SeatType { VIP, NORMAL, SPECIALNEEDS }; //Special needs 
+
 class Seat {
 private:
 	string seatId="";
-	int* seatNumber = 0;
-	char Row='A';   //From A to Z
-	string Hall="E1";  //Ex: E1, A12 etc.
-	Location* Zone;
+	int seatNumber = 0;
+	char row='A';   //From A to H
+
+	Location* Hall;
+	SeatType type;
 	bool isAvailable = false;
 
 	const int NO_SEATS_PER_ROW;
@@ -35,25 +38,30 @@ public:
 	}
 
 	char getRow() {
-		return this->Row;
+		return this->row;
 	}
 
-	string getHall() {
-		return this->Hall;
+	SeatType getSeatType() {
+		this->type = type;
 	}
 
-	bool getAvailability() {
+
+	bool isAvailable() {
 		return this->isAvailable;
 	}
 
 	//setters
 
-	void setSeatId();
-	void setSeatNumber();
-	void setRow();
-	void setHall();
-	void setAvailability();
-
-
+	void setSeatNumber(int newSeatNumber) {
+		if (newSeatNumber > Seat::NO_SEATS_PER_ROW) {
+			throw exception("The seat does not exist");
+		}
+		this->seatNumber = newSeatNumber;
+	}
+	void setRow(char newRow) {
+		if (newRow < 'A' || newRow>'H') {
+			throw exception("The row does not exist");
+		}
+	}
 
 };

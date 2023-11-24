@@ -11,9 +11,7 @@ private:
 	char* ticketId = nullptr;
 	double price = 0;
 	Event* name;
-	Event* type;
 	Location* name;
-	Location* type;
 	TicketType type;
 
 	static int NO_VALID_TICKETS;
@@ -40,5 +38,7 @@ public:
 		this->type = type;
 	}
 
-	void setPrice();
+	void setPrice(double newPrice) {
+		this->price = newPrice;
+	}
 };

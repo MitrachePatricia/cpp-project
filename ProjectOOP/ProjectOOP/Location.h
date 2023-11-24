@@ -3,19 +3,18 @@
 #include "Util.h"
 #include "main.cpp"
 
-enum class ZoneType { STAND1, STAND2, CATEGORY1, CATEGORY2, BOX, VIP, NORMAL };
-
 class Location {
 private:
 	char* locationId=nullptr;
+	string Hall = "E1";  //Ex: A1-A9, E1-E9 etc.
 	const string locationName;
-	ZoneType type;
 
 	static int MAX_NO_SEATS;
 
 public:
 
 	//getters
+
 	string getLocationId() {
 		if (this->locationId != nullptr)
 			return string(this->locationId);
@@ -27,14 +26,28 @@ public:
 		return Location::MAX_NO_SEATS;
 	}
 
-    ZoneType getZoneType() {
-		this->type = type;
+	string getHall() {
+		return this->Hall;
 	}
 
 	//setters
 
-	void setLocationId();
-	void setType();
+	void setLocationId(string newLocationId) {
+		delete[] this->locationId;
+		this->locationId = Util::copyString(newLocationId.c_str());
+	}
+
+	void setHall(string newHall) {
+		if (newHall.size() < 2 || newHall.size() > 3) {
+			throw exception("Wrong number of characters introduced");
+		}
+		if (newHall[0] < 'A' || newHall[0]>'E') {
+			throw exception("There is no such hall");
+		}
+
+		this->Hall = newHall;
+
+	}
 
 	//default constructor
 
