@@ -7,9 +7,7 @@ enum class SeatType { VIP, NORMAL, SPECIALNEEDS }; //Special needs
 
 class Seat {
 private:
-	string seatId="";
-	int seatNumber = 0;
-	char row='A';   //From A to H
+	char seatId[4];  //A01-A14, H01-H14  //dynamically Allocated char vector :D
 
 	Location* Hall;
 	SeatType type;
@@ -25,23 +23,12 @@ public:
 		return Seat::NO_SEATS_PER_ROW;
 	}
 
-	string getSeatId() {
-		this->seatId = seatId;
+	char* getSeatId() {
+		return this->seatId;
+		return nullptr;
 	}
 
-	int* getSeatNumber() {
-		int* copy = new int[this->NO_SEATS_PER_ROW];
-		for (int i = 0; i < this->NO_SEATS_PER_ROW; i++){
-			copy[i] = this->seatNumber[i];
-	}
-		return copy;
-	}
-
-	char getRow() {
-		return this->row;
-	}
-
-	SeatType getSeatType() {
+	SeatType getSeatType() {	
 		this->type = type;
 	}
 
@@ -52,16 +39,19 @@ public:
 
 	//setters
 
-	void setSeatNumber(int newSeatNumber) {
-		if (newSeatNumber > Seat::NO_SEATS_PER_ROW) {
-			throw exception("The seat does not exist");
-		}
-		this->seatNumber = newSeatNumber;
-	}
-	void setRow(char newRow) {
-		if (newRow < 'A' || newRow>'H') {
+
+	void setSeatId(const char* newSeatId) {
+		delete[] this->seatId;
+		if (strlen(newSeatId) > 3)
+			throw exception("Wrong fromat of seat introduced.");
+		if (newSeatId[0] < 'A' || newSeatId[0]>'H') {
 			throw exception("The row does not exist");
 		}
-	}
 
+		if (newSeatId[1]*10+newSeatId[2] > Seat::NO_SEATS_PER_ROW || newSeatId[1]*10+newSeatId[2] < 0) {  //We verify if the number of the seat
+			throw exception("The seat does not exist");
+		}
+		strcpy_s(seatId, strlen(newSeatId) + 1, newSeatId);
+	}
+	
 };

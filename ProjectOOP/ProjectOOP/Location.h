@@ -52,5 +52,11 @@ public:
 	//default constructor
 
 	Location(string locationName) : locationName(locationName) {
+		this->setHall("H9");
+		this->setLocationId("102A");
+	}
+
+	~Location() {
+		delete[] this->locationId;
 	}
 };

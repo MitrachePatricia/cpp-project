@@ -10,8 +10,8 @@ class Ticket {
 private:
 	char* ticketId = nullptr;
 	double price = 0;
-	Event* name;
-	Location* name;
+	Event* EventName;
+	Location* locationName;
 	TicketType type;
 
 	static int NO_VALID_TICKETS;
@@ -30,7 +30,6 @@ public:
 	//setters
 	
 	void setTicketId(string tId) {
-		delete[] this->ticketId;
 		this->ticketId = Util::copyString(tId.c_str());
 	}
 
@@ -40,5 +39,18 @@ public:
 
 	void setPrice(double newPrice) {
 		this->price = newPrice;
+	}
+
+	//default constructor
+
+	Ticket() {
+		this->setPrice(20);
+		this->setTicketId();
+	}
+
+	//destructor
+
+	~Ticket(){ 
+		delete[] this->ticketId; 
 	}
 };

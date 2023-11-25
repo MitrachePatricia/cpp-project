@@ -7,20 +7,20 @@
 
 class Event {
 private:
-	char* name = nullptr;
+	const char* eventName = nullptr;
 	char date[11];      // dd/mm/yyy
 	char startingHour[6];       // hh:mm
 	int duration = 0;       // in min
-	Location* name;
+	Location* locationName;
 	Seat* seatNumber;
 	Seat* row;
 
 public:
 
 	//getters
-	string getName() {
-		if (this->name != nullptr)
-			return string(this->name);
+	string getEventName() {
+		if (this->eventName != nullptr)
+			return string(this->eventName);
 		else
 			return "";
 	}
@@ -39,11 +39,11 @@ public:
 	
 	//setters
 
-	void setName(const char* newName) {
-		if (newName[0] < 'A' || newName[0]>'Z')
+	void setEventName(const char* newEventName) {
+		if (newEventName[0] < 'A' || newEventName[0]>'Z')
 			throw exception("There are no movies ");
 
-		this->name = Util::copyString(newName);
+		this->eventName = Util::copyString(newEventName);
 	}
 	void setDate(const char* newDate) {
 		if (strlen(newDate) != 10) {
@@ -68,6 +68,20 @@ public:
 
 	void setDuration(int newDuration) {
 		this->duration = newDuration;
+	}
+
+	// default constructor
+
+	Event() : eventName("No name") {
+		this->setDate("01/01/2020");
+		this->setDuration(92);
+		this->setStartingHour("14:30");
+	}
+
+	//destructor
+
+	~Event() {
+		delete[] this->eventName;
 	}
 
 };
