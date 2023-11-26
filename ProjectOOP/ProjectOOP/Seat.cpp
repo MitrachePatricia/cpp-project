@@ -12,7 +12,7 @@ void Seat::setRow(char newRow) {
 		throw exception("The row does not exist");
 	}
 	else
-		this->row = newRow;
+		this->row = (newRow);
 }
 
 void Seat::setSeatNumber(int newSeatNumber) {
@@ -124,5 +124,15 @@ void operator>>(istream& console, Seat& newSeat) {
 				newSeat.setSeatType(SPECIALNEEDS);
 			else
 				throw exception("You do not have a seat");
-}
+
+	cout << "Insert the desired row:";
+	char newRow;
+	console >> newRow;
+	newSeat.setRow(newRow);
+
+	cout << "Insert the desired seat number:";
+	int newSeatNumber;
+	console >> newSeatNumber;
+	newSeat.setSeatNumber(newSeatNumber);
+
 }

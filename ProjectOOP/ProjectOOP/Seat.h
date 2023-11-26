@@ -3,7 +3,7 @@
 #include "Util.h"
 #include "main.cpp"
 
-enum class SeatType { VIP=20, NORMAL, SPECIALNEEDS }; //Special needs 
+enum SeatType { VIP = 20, NORMAL, SPECIALNEEDS }; //Special needs 
 
 class Seat {
 private:
