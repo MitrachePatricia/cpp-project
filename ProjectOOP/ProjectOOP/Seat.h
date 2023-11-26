@@ -17,6 +17,23 @@ private:
 
 public:
 
+	//setters
+
+
+	void setSeatId(const char* newSeatId) {
+		delete[] this->seatId;
+		if (strlen(newSeatId) > 3)
+			throw exception("Wrong fromat of seat introduced.");
+		if (newSeatId[0] < 'A' || newSeatId[0]>'H') {
+			throw exception("The row does not exist");
+		}
+
+		if (newSeatId[1] * 10 + newSeatId[2] > Seat::NO_SEATS_PER_ROW || newSeatId[1] * 10 + newSeatId[2] < 0) {  //We verify if the number of the seat
+			throw exception("The seat does not exist");
+		}
+		strcpy_s(seatId, strlen(newSeatId) + 1, newSeatId);
+	}
+
 	// getters
 
 	const int getNoSeatsPerRow() {
@@ -37,21 +54,5 @@ public:
 		return this->isAvailable;
 	}
 
-	//setters
-
-
-	void setSeatId(const char* newSeatId) {
-		delete[] this->seatId;
-		if (strlen(newSeatId) > 3)
-			throw exception("Wrong fromat of seat introduced.");
-		if (newSeatId[0] < 'A' || newSeatId[0]>'H') {
-			throw exception("The row does not exist");
-		}
-
-		if (newSeatId[1]*10+newSeatId[2] > Seat::NO_SEATS_PER_ROW || newSeatId[1]*10+newSeatId[2] < 0) {  //We verify if the number of the seat
-			throw exception("The seat does not exist");
-		}
-		strcpy_s(seatId, strlen(newSeatId) + 1, newSeatId);
-	}
 	
 };

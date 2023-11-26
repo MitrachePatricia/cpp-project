@@ -5,58 +5,50 @@
 
 class Location {
 private:
-	char* locationId=nullptr;
+	int locationId;
 	string Hall = "E1";  //Ex: A1-A9, E1-E9 etc.
 	const string locationName;
+	unsigned int runningEvents=0;
 
 	static int MAX_NO_SEATS;
+	static unsigned int TOTAL_LOCATIONS;
 
 public:
 
+	//setters
+
+	void setLocationId(int newLocationId);
+	void setHall(string newHall);
+	void setRunningEvents(unsigned int runningEvents);
+
 	//getters
 
-	string getLocationId() {
-		if (this->locationId != nullptr)
-			return string(this->locationId);
-		else
-			return "";
-	}
-
+	int getLocationId();
 	static int getMaxNoSeats() {
 		return Location::MAX_NO_SEATS;
 	}
-
-	string getHall() {
-		return this->Hall;
-	}
-
-	//setters
-
-	void setLocationId(string newLocationId) {
-		delete[] this->locationId;
-		this->locationId = Util::copyString(newLocationId.c_str());
-	}
-
-	void setHall(string newHall) {
-		if (newHall.size() < 2 || newHall.size() > 3) {
-			throw exception("Wrong number of characters introduced");
-		}
-		if (newHall[0] < 'A' || newHall[0]>'E') {
-			throw exception("There is no such hall");
-		}
-
-		this->Hall = newHall;
-
-	}
+	string getHall();
 
 	//default constructor
 
 	Location(string locationName) : locationName(locationName) {
 		this->setHall("H9");
-		this->setLocationId("102A");
+		this->setLocationId(435);
 	}
+	~Location();
 
-	~Location() {
-		delete[] this->locationId;
-	}
+	// Operators :)
+
+	   //copy operator
+	Location operator=(const Location& newLocation);
+
+	   //compare operators
+	bool operator==(const Location& newLocation);
+	bool operator!=(const Location& newLocation);
+
+	   //stream operators
+	   
+	friend void operator<<(ostream& console, Location &location);
+	friend void operator>>(istream& console, Location& location);
+	 
 };

@@ -4,71 +4,35 @@
 #include "main.cpp"
 #include "seat.h"
 	
+enum GendreType { ROMANCE = 10, DRAMA, HORROR, THRILLER, COMEDY, ANIMATED };
 
 class Event {
 private:
 	const char* eventName = nullptr;
-	char date[11];      // dd/mm/yyy
+	const char* date[11];      // dd/mm/yyy
 	char startingHour[6];       // hh:mm
 	int duration = 0;       // in min
+	GendreType gendre;
 	Location* locationName;
 	Seat* seatNumber;
 	Seat* row;
 
 public:
 
-	//getters
-	string getEventName() {
-		if (this->eventName != nullptr)
-			return string(this->eventName);
-		else
-			return "";
-	}
-	char* getDate() {
-		return Util::copyString(this->date);
-	}
-
-	char* getStartingHour() {
-		return Util::copyString(this->startingHour);
-	}
-
-	int getDuration() {
-		return this->duration;
-	}
-
-	
 	//setters
 
-	void setEventName(const char* newEventName) {
-		if (newEventName[0] < 'A' || newEventName[0]>'Z')
-			throw exception("There are no movies ");
+	void setEventName(const char* newEventName);
+	void setDate(const char* newDate);
+	void setStartingHour(const char* newStartingHour);
+	void setDuration(int newDuration);
 
-		this->eventName = Util::copyString(newEventName);
-	}
-	void setDate(const char* newDate) {
-		if (strlen(newDate) != 10) {
-			throw exception("The introduced date is wrong!");
-		}
-		if (newDate[2] != '/' || newDate[5] != '/') {
-			throw exception("The data format is wrong");
-		}
+	//getters
 
-		strcpy_s(this->date, newDate);
-	}
-	void setStartingHour(const char* newStartingHour) {
-		if (strlen(newStartingHour) != 5) {
-			throw exception("The introduced hour is wrong!");
-		}
-		if (newStartingHour[2] != ':') {
-			throw exception("The hour format is wrong");
-		}
-
-		strcpy_s(this->startingHour, newStartingHour);
-	}
-
-	void setDuration(int newDuration) {
-		this->duration = newDuration;
-	}
+	string getEventName();
+	char* getDate();
+	char* getStartingHour();
+	int getDuration();
+	GendreType getGendreType();
 
 	// default constructor
 
@@ -78,10 +42,26 @@ public:
 		this->setStartingHour("14:30");
 	}
 
+	//constructor with parameters
+
+	Event(const char* eventName, char* date, char* startingHour, int duration) : eventName(eventName), duration(duration) {
+		this->setDate(date);
+		this->setStartingHour(startingHour);
+	}
+
 	//destructor
 
-	~Event() {
-		delete[] this->eventName;
-	}
+	~Event();
+
+	//Operators
+
+	//copy operator
+
+	Event operator=(const Event& newEvent);
+
+	//
+
+	//stream operators
+
 
 };

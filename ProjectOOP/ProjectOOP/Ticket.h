@@ -15,37 +15,27 @@ private:
 	TicketType type;
 
 	static int NO_VALID_TICKETS;
+	static int getUniqueId();
 
 public:
 
-	//getters
-	char* getTicketId() {
-		return this->ticketId;
-	}
-
-	double getPrice() {
-		return this->price;
-	}
-
 	//setters
-	
-	void setTicketId(string tId) {
-		this->ticketId = Util::copyString(tId.c_str());
-	}
 
+	void setTicketId(string tId);
 	TicketType getTicketType() {
 		this->type = type;
 	}
+	void setPrice(double newPrice);
 
-	void setPrice(double newPrice) {
-		this->price = newPrice;
-	}
+	//getters
+	char* getTicketId();
+	double getPrice();
 
 	//default constructor
 
 	Ticket() {
 		this->setPrice(20);
-		this->setTicketId();
+		this->setTicketId("762A");
 	}
 
 	//destructor
