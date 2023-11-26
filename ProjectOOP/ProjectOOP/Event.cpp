@@ -105,12 +105,12 @@ void operator<<(ostream& console, Event& event) {
 
 void operator>>(istream& console, Event& event) {
 	cout << "Insert the desired event name: ";
-	char* newEvent;
+	char* newEvent{};
 	console >> newEvent;
 	event.setEventName(newEvent);
 
 	cout << "Insert desired date for the event:";
-	char* newDate;
+	char* newDate{};
 	console >> newDate;
 	event.setDate(newDate);
 

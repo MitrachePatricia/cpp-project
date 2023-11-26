@@ -1,7 +1,7 @@
 #include "Seat.h"
 
 void Seat::setSeatId(string newSeatId) {
-	if (sizeof(newSeatId) < 4) {
+	if (sizeof(newSeatId) < 4&&sizeof(newSeatId)>0) {
 		throw exception("Wrong fromat of seatId introduced.");
 	}
 	this->seatId = Util::copyString(newSeatId.c_str());
@@ -24,9 +24,9 @@ void Seat::setSeatNumber(int newSeatNumber) {
 
 int Seat::setAvailability(bool isAvailable) {
 	if (isAvailable == true)
-		cout<< "The seat is available";
+		return true;
 	else
-		cout<< "The seat is not available";
+		return false;
 }
 
 void Seat::setSeatType(SeatType newType) {
@@ -80,6 +80,7 @@ Seat Seat::operator=(const Seat& OtherSeat) {
 	this->setRow(OtherSeat.row);
 	this->setSeatId(OtherSeat.seatId);
 	this->setSeatNumber(OtherSeat.seatNumber);
+	return *this;
 }
 
 bool Seat::operator==(Seat newSeat) {
@@ -106,7 +107,7 @@ void operator<<(ostream& console, Seat& seat) {
 
 void operator>>(istream& console, Seat& newSeat) {
 	cout << "Insert the id of the ticket:";
-	char* newSeatId;
+	char* newSeatId{};
 	console >> newSeatId;
 	newSeat.setSeatId(newSeatId);
 
