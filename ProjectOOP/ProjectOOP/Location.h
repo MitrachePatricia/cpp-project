@@ -7,7 +7,6 @@ class Location {
 private:
 	int locationId;
 	string Hall = "E1";  //Ex: A1-A9, E1-E9 etc.
-	const string locationName;
 	unsigned int runningEvents=0;
 
 	static int MAX_NO_SEATS;
@@ -31,7 +30,7 @@ public:
 
 	//default constructor
 
-	Location(string locationName) : locationName(locationName) {
+	Location(string locationName) {
 		this->setHall("H9");
 		this->setLocationId(435);
 	}
@@ -43,8 +42,8 @@ public:
 	Location operator=(const Location& newLocation);
 
 	   //compare operators
-	bool operator==(const Location& newLocation);
 	bool operator!=(const Location& newLocation);
+	//Location operator++(int);
 
 	   //stream operators
 	   

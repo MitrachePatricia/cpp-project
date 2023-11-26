@@ -15,7 +15,7 @@ private:
 	TicketType type;
 
 	static int NO_VALID_TICKETS;
-	static int getUniqueId();
+	//static int getUniqueId();
 
 public:
 

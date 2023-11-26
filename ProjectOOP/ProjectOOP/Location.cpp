@@ -29,4 +29,26 @@ int Location::getLocationId() {
 
 string Location::getHall() {
 	return this->Hall;
+
 }
+
+Location Location::operator=(const Location& newLocation) {
+	this->setHall(newLocation.Hall);
+	this->setLocationId(newLocation.locationId);
+	this->setRunningEvents(newLocation.runningEvents);
+	return *this;
+}
+
+bool Location::operator!=(const Location& newLocation) {
+	if (this->Hall != newLocation.Hall)
+		return true;
+	else
+		return false;
+}
+
+//Location Location::operator++(int) {
+	//Location updatedRunningEvents=*this;
+	//updatedRunningEvents++;
+	//return updatedRunningEvents;
+
+//}
