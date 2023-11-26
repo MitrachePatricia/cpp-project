@@ -15,17 +15,4 @@ public:
 		strcpy_s(value, strlen(source) + 1, source);
 		return value;
 	}
-	static string seatTypeToString(SeatType type) {
-		switch (type) {
-		case SeatType::VIP:
-			return "VIP";
-		case SeatType::NORMAL:
-			return "Normal";
-		case SeatType::SPECIALNEEDS:
-			return "Special Needs";
-		default:
-			throw exception("You may not have a seat at this event.");
-
-		}
-	}
 };

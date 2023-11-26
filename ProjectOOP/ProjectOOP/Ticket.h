@@ -40,9 +40,7 @@ public:
 
 	//destructor
 
-	~Ticket(){ 
-		delete[] this->ticketId; 
-	}
+	~Ticket();
 
 	//Operators
 

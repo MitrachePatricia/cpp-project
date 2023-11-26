@@ -51,7 +51,7 @@ string Ticket::getTicketId() {
 		return string(this->ticketId);
 }
 
-Ticket::Ticket() {
+Ticket::Ticket():ticketId(ticketId){
 	    this->setPrice(20);
 	    this->setTicketId("762A");
 }
@@ -87,13 +87,13 @@ bool Ticket::operator<(int value) {
 }
 
 void operator<<(ostream& console, Ticket& ticket) {
-	cout << "*****************";
-	cout << "\nThe ticket id is:" << ticket.getUniqueId();
-	cout << "\nThe ticket price was:" << ticket.getPrice();
-	cout << "\nThe ticket type is: " << ticket.getTicketType();
+	console << "*****************";
+	console << "\nThe ticket id is:" << ticket.getUniqueId();
+	console << "\nThe ticket price was:" << ticket.getPrice();
+	console << "\nThe ticket type is: " << ticket.getTicketType();
 }
 
-void operator<<(istream& console, Ticket& newTicket) {
+void operator>>(istream& console, Ticket& newTicket) {
 	cout << "Insert the price of the ticket:";
 	int newPrice;
 	console >> newPrice;

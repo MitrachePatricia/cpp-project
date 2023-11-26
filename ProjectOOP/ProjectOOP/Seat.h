@@ -3,56 +3,56 @@
 #include "Util.h"
 #include "main.cpp"
 
-enum class SeatType { VIP, NORMAL, SPECIALNEEDS }; //Special needs 
+enum class SeatType { VIP=20, NORMAL, SPECIALNEEDS }; //Special needs 
 
 class Seat {
 private:
-	char seatId[4];  //A01-A14, H01-H14  //dynamically Allocated char vector :D
-
-	Location* Hall;
+	const char* seatId=nullptr;  //A01-A14, H01-H14  //dynamically Allocated char vector :D
+	int seatNumber;
+	char row;
+	//Location* Hall;
 	SeatType type;
-	bool isAvailable = false;
+	bool isAvailable = true;
 
-	const int NO_SEATS_PER_ROW;
+	const int NO_SEATS_PER_ROW = 10;
 
 public:
 
 	//setters
 
 
-	void setSeatId(const char* newSeatId) {
-		delete[] this->seatId;
-		if (strlen(newSeatId) > 3)
-			throw exception("Wrong fromat of seat introduced.");
-		if (newSeatId[0] < 'A' || newSeatId[0]>'H') {
-			throw exception("The row does not exist");
-		}
-
-		if (newSeatId[1] * 10 + newSeatId[2] > Seat::NO_SEATS_PER_ROW || newSeatId[1] * 10 + newSeatId[2] < 0) {  //We verify if the number of the seat
-			throw exception("The seat does not exist");
-		}
-		strcpy_s(seatId, strlen(newSeatId) + 1, newSeatId);
-	}
+	void setSeatId(string newSeatId);
+	void setRow(char newRow);
+	void setSeatNumber(int newSeatNumber);
+	void setSeatType(SeatType newType);
+	void Available();
+	void notAvailable();
+	int setAvailability(bool isAvailable);
 
 	// getters
 
-	const int getNoSeatsPerRow() {
-		return Seat::NO_SEATS_PER_ROW;
-	}
+	const int getNoSeatsPerRow();
+	string getSeatId();
+	int getSeatNumber();
+	SeatType getSeatType();
+	char getRow();
 
-	char* getSeatId() {
-		return this->seatId;
-		return nullptr;
-	}
+	//constructors
 
-	SeatType getSeatType() {	
-		this->type = type;
-	}
+	Seat();
+	Seat(int seatNumber, char row);
 
+	//destructor
 
-	bool isAvailable() {
-		return this->isAvailable;
-	}
+	~Seat();
 
-	
+	//operators
+
+	Seat operator=(const Seat& OtherSeat);
+
+	bool operator==(Seat newSeat);            //We find out if there was an overwrite of the tickets
+	Seat operator *=(int value);
+
+	friend void operator<<(ostream& console, Seat& newSeat);
+	friend void operator>>(istream& console, Seat& newSeat);
 };
