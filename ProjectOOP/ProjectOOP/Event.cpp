@@ -122,7 +122,33 @@ void operator>>(istream& console, Event& event) {
 	//cout << "Insert the gendre";
 	//string newGendre;
 	//console >> newGendre;  //i dont know how to do this im sorry
+	cout << "Insert the gendre";
+	string gendre;
+	console >> gendre;
+	if (gendre == "ROMANCE")
+		event.setGendreType(ROMANCE);
+	else
+		if (gendre == "HORROR")
+			event.setGendreType(HORROR);
+		else
+			if
+				(gendre == "COMEDY")
+				event.setGendreType(COMEDY);
+			else
+				if
+					(gendre == "THRILLER")
+					event.setGendreType(THRILLER);
+				else
+					if(gendre == "ANIMATED")
+					event.setGendreType(ANIMATED);
+				else
+						if
+							(gendre == "DRAMA")
+							event.setGendreType(DRAMA);
+						else
+				throw exception("We dont have that gendre");
 }
+
 
 Event::Event() : eventName("No name") {
 	this->setDate("01/01/2020");
@@ -131,9 +157,10 @@ Event::Event() : eventName("No name") {
 	NO_RUNNING_EVENTS++;
 }
 
-Event::Event(const char* eventName, char* date, char* startingHour, int duration) : eventName(eventName), duration(duration) {
+Event::Event(const char* eventName, char* date, char* startingHour, int duration) : eventName(eventName) {
 	this->setDate(date);
 	this->setStartingHour(startingHour);
+	this->setDuration(duration);
 	NO_RUNNING_EVENTS++;
 }
 
@@ -145,6 +172,7 @@ Event Event::operator=(const Event& OtherEvent) {
 	this->setDate(OtherEvent.date);
 	this->setDuration(OtherEvent.duration);
 	this->setStartingHour(OtherEvent.startingHour);
+	this->setGendreType(OtherEvent.gendre);
 	return *this;
 }
 
@@ -154,11 +182,11 @@ Event Event::operator+(int value) {
 	return updatedDuration;
 }
 
-bool Event::operator>=(const Event event) {
+bool Event::operator>(int value) {
 	char copy[2];
-	strcpy_s(copy, 2, event.startingHour);
+	strcpy_s(copy, 2, startingHour);
 	copy[2] = NULL;
-	if (copy[0] >= 1 && copy[2] >= 4)
+	if (copy[0] >= value/10 && copy[2] >= value%10)
 		return true;
 	else
 		return false;

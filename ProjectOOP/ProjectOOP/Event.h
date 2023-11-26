@@ -52,16 +52,10 @@ public:
 
 	//Operators
 
-	//copy operator
-
 	Event operator=(const Event& OtherEvent);
 
-	//operators
-
 	Event operator+(int value);
-	bool operator>=(const Event& event);
-
-	//stream operators
+	bool operator>(int value);
 
 	friend void operator<<(ostream& console, Event& newEvent);
 	friend void operator>>(istream& console, Event& newEvent);

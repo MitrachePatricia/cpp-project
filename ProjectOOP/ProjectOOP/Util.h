@@ -28,19 +28,4 @@ public:
 
 		}
 	}
-	
-	static string ticketTypeToString(TicketType type) {
-		switch (type) {
-		case TicketType::CASH:
-			return "Cash";
-		case TicketType::ONLINE:
-			return "Online";
-		case TicketType::PREPAID:
-			return "Prepaid";
-		default:
-			throw exception("Event is unknown/inexistent.");
-
-		}
-	}
-	static int getUniqueId();
 };

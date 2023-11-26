@@ -8,10 +8,10 @@ enum TicketType { ONLINE, PREPAID, CASH };
 
 class Ticket {
 private:
-	char* ticketId = nullptr;
+	const char* ticketId = nullptr;
 	double price = 0;
-	Event* EventName;
-	Location* locationName;
+	//Event* EventName;
+	//Location* locationName;
 	TicketType type;
 
 	static int NO_VALID_TICKETS;
@@ -22,25 +22,35 @@ public:
 	//setters
 
 	void setTicketId(string tId);
-	TicketType getTicketType() {
-		this->type = type;
-	}
 	void setPrice(double newPrice);
+	void setTicketType(TicketType newType);
 
 	//getters
-	char* getTicketId();
+	string getTicketId();
 	double getPrice();
+	TicketType getTicketType();
 
 	//default constructor
 
-	Ticket() {
-		this->setPrice(20);
-		this->setTicketId("762A");
-	}
+	Ticket();
+
+	//constructor with parameters
+
+	Ticket(const char* ticketId, double price);
 
 	//destructor
 
 	~Ticket(){ 
 		delete[] this->ticketId; 
 	}
+
+	//Operators
+
+	Ticket operator=(const Ticket& OtherTicket);
+
+	Ticket operator-=(int value);             //We apply a certain discount to the ticket
+	bool operator<(int value);   //Verify if there are less than a certain number of seats
+
+	friend void operator<<(ostream& console, Ticket& newTicket);
+	friend void operator>>(istream& console, Ticket& newTicket);
 };
