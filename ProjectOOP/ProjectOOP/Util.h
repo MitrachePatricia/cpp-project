@@ -1,9 +1,10 @@
 #pragma once
-#include "main.cpp"
 #include "Event.h"
 #include "Location.h"
 #include "Seat.h"
 #include "Ticket.h"
+#include <string.h>
+using namespace std;
 
 class Util {
 public:

@@ -1,5 +1,6 @@
 #include "Event.h"
 #include <string>
+using namespace std;
 
 
 int Event::NO_RUNNING_EVENTS = 0;
@@ -95,11 +96,11 @@ string Event::gendreTypeToString(GendreType gendre) {
 
 void operator<<(ostream& console, Event& event) {
 	console << "******************";
-	console << "\n Event Name: " << event.getEventName();
-	console << "\n The date of the event is: " << event.getEventName();
-	console << "\n The starting hour of the event is: " << event.getStartingHour();
-	console << "\n The duration of the event is: " << event.getDuration();
-	console << "\n The gendre of the event is: " << event.getGendreType();
+	console << "\n Event Name: " << event.eventName;
+	console << "\n The date of the event is: " << event.date;
+	console << "\n The starting hour of the event is: " << event.startingHour;
+	console << "\n The duration of the event is: " << event.duration;
+	console << "\n The gendre of the event is: " << event.gendre;
 
 }
 

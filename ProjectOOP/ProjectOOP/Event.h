@@ -1,8 +1,10 @@
 #pragma once
 #include "Location.h"
 #include "Util.h"
-#include "main.cpp"
 #include "seat.h"
+#include <string>
+#include <iostream>
+using namespace std;
 	
 enum GendreType { ROMANCE = 10, DRAMA, HORROR, THRILLER, COMEDY, ANIMATED };
 

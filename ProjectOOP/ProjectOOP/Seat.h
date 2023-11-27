@@ -1,7 +1,9 @@
 #pragma once
 #include "Location.h"
 #include "Util.h"
-#include "main.cpp"
+#include <string>
+#include <iostream>
+using namespace std;
 
 enum SeatType { VIP = 20, NORMAL, SPECIALNEEDS }; //Special needs 
 

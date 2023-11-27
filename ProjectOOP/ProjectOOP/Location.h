@@ -1,7 +1,8 @@
 #pragma once
 #include <string>
+#include <iostream>
+using namespace std;
 #include "Util.h"
-#include "main.cpp"
 
 class Location {
 private:

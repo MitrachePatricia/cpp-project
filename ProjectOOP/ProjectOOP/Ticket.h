@@ -2,7 +2,9 @@
 #include "Event.h"
 #include "Location.h"
 #include "Util.h"
-#include "main.cpp"
+#include <string>
+#include <iostream>
+using namespace std;
 
 enum TicketType { ONLINE, PREPAID, CASH };
 
@@ -15,7 +17,7 @@ private:
 	TicketType type;
 
 	static int NO_VALID_TICKETS;
-	//static int getUniqueId();
+	static int getUniqueId();
 
 public:
 
@@ -46,7 +48,7 @@ public:
 
 	Ticket operator=(const Ticket& OtherTicket);
 
-	Ticket operator-=(int value);             //We apply a certain discount to the ticket
+	Ticket operator-=(double value);             //We apply a certain discount to the ticket
 	bool operator<(int value);   //Verify if there are less than a certain number of seats
 
 	friend void operator<<(ostream& console, Ticket& newTicket);
