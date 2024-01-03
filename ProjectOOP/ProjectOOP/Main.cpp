@@ -8,5 +8,5 @@ using namespace std;
 #include "Util.h"
 
 int main() {
-
+	cout << "Hello World!";
 }
