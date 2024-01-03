@@ -44,7 +44,7 @@ public:
 
 	   //compare operators
 	bool operator!=(const Location& newLocation);
-	//Location operator++(int);
+	Location operator++(int);
 
 	   //stream operators
 	   

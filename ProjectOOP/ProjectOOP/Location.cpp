@@ -1,5 +1,7 @@
 #include "Location.h"
 
+int Location::MAX_NO_SEATS = 200;
+
 void Location::setLocationId(int newLocationId) {
 	if (newLocationId != 0)
 		this->locationId =newLocationId;
@@ -46,9 +48,26 @@ bool Location::operator!=(const Location& newLocation) {
 		return false;
 }
 
-//Location Location::operator++(int) {
-	//Location updatedRunningEvents=*this;
-	//updatedRunningEvents++;
-	//return updatedRunningEvents;
+Location Location::operator++(int) {
+	Location updatedRunningEvents=*this;
+	updatedRunningEvents++;
+	return updatedRunningEvents;
 
-//}
+}
+
+Location::~Location() {
+	MAX_NO_SEATS--;
+}
+
+void operator<<(ostream& console, Location& location) {
+	console << "*****************";
+	console << "\nThe location id is:" << location.getLocationId();
+	console << "\nThe hall is:" << location.getHall();
+}
+
+void operator>>(istream& console, Location& location) {
+	cout << "Insert the desired hall:";
+	string newHall;
+	console >> newHall;
+	location.setHall(newHall);
+}

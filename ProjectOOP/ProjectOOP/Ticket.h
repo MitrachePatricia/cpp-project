@@ -28,7 +28,6 @@ public:
 	void setTicketType(TicketType newType);
 
 	//getters
-	string getTicketId();
 	double getPrice();
 	TicketType getTicketType();
 
