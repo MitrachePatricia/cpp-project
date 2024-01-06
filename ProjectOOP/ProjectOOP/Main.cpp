@@ -37,12 +37,16 @@ using namespace std;
 				throw exception("Error!");
 			}
 
+	}
+
+	void option1() {
 
 	}
 
-	void option1();
 	void option2();
+
 	void option3();
+
 	void option4();
 
 	int main() {

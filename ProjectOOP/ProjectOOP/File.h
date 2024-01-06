@@ -2,6 +2,7 @@
 #include <fstream>
 #include <iostream>
 
+
 class File {
 public:
 	static char fileName[];
