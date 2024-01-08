@@ -6,15 +6,14 @@
 #include <iostream>
 using namespace std;
 	
-enum GendreType { ROMANCE = 10, DRAMA, HORROR, THRILLER, COMEDY, ANIMATED };
+enum GenreType { ROMANCE = 10, DRAMA, HORROR, THRILLER, COMEDY, ANIMATED };
 
 class Event {
-private:
-	const char* eventName = nullptr;
+protected:
+	string eventName;
 	char date[11];      // dd/mm/yyy
 	char startingHour[6];       // hh:mm
 	int duration = 0;       // in min
-	GendreType gendre;
 	//Location* locationName;
 	//Seat* seatNumber;
 	//Seat* row;
@@ -25,11 +24,10 @@ public:
 
 	//setters
 
-	void setEventName(const char* newEventName);
+	void setEventName(string newEventName);
 	void setDate(const char* newDate);
 	void setStartingHour(const char* newStartingHour);
 	void setDuration(int newDuration);
-	void setGendreType(GendreType gendre);
 
 	//getters
 
@@ -37,8 +35,6 @@ public:
 	char* getDate();
 	char* getStartingHour();
 	int getDuration();
-	GendreType getGendreType();
-	static string gendreTypeToString(GendreType gendre);
 
 	// default constructor
 
@@ -46,7 +42,7 @@ public:
 
 	//constructor with parameters
 
-	Event(const char* eventName, char* date, char* startingHour, int duration);
+	Event(string eventName, char* date, char* startingHour, int duration);
 
 	//destructor
 
@@ -62,4 +58,32 @@ public:
 	friend void operator<<(ostream& console, Event& newEvent);
 	friend void operator>>(istream& console, Event& newEvent);
 
+};
+
+class Movie :public Event {
+	GenreType type;
+
+	void setGenreType(GenreType genre);
+	GenreType getGenreType();
+	static string genreTypeToString(GenreType genre);
+public:
+	Movie(string name, char* date, char* startHour, int duration, GenreType type) : Event(name, date, startHour, duration) {
+		this->type = type;
+	}
+};
+
+class Play :public Event {
+public:
+	Play(string name, char* date, char* startHour, int duration) : Event(name, date, startHour, duration) {
+
+	}
+};
+
+class Opera : public Event {
+	string singerName;
+public:
+	Opera(string name, char* date, char* startHour, int duration, string sName): 
+		Event(name, date, startHour, duration),singerName(sName) {
+
+	}
 };

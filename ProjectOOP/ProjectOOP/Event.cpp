@@ -5,11 +5,11 @@ using namespace std;
 
 int Event::NO_RUNNING_EVENTS = 0;
 
-void Event::setEventName(const char* newEventName) {
+void Event::setEventName(string newEventName) {
 	if (newEventName[0] < 'A' || newEventName[0]>'Z')
 		throw exception("There are no movies ");
 
-	this->eventName = Util::copyString(newEventName);
+	this->eventName = newEventName;
 }
 
 void Event::setDate(const char* newDate) {
@@ -45,15 +45,12 @@ void Event::setDuration(int newDuration) {
 	this->duration = newDuration;
 }
 
-void Event::setGendreType(GendreType newGendre){
-	this->gendre = newGendre;
+void Movie::setGenreType(GenreType newGendre){
+	this->type = newGendre;
 }
 
 string Event::getEventName() {
-	if (this->eventName != nullptr)
-		return string(this->eventName);
-	else
-		return "";
+		return this->eventName;
 }
 char* Event::getDate() {
 
@@ -68,23 +65,23 @@ int Event::getDuration() {
 	return this->duration;
 }
 
-GendreType Event::getGendreType() {
-	return this->gendre;
+GenreType Movie::getGenreType() {
+	return this->type;
 }
 
-string Event::gendreTypeToString(GendreType gendre) {
+string Movie::genreTypeToString(GenreType gendre) {
 	switch (gendre) {
-	case GendreType::ROMANCE:
+	case GenreType::ROMANCE:
 		return "Romance";
-	case GendreType::DRAMA:
+	case GenreType::DRAMA:
 		return "Drama";
-	case GendreType::HORROR:
+	case GenreType::HORROR:
 		return "Horror";
-	case GendreType::THRILLER:
+	case GenreType::THRILLER:
 		return"Thriller";
-	case GendreType::COMEDY:
+	case GenreType::COMEDY:
 		return "Comedy";
-	case GendreType::ANIMATED:
+	case GenreType::ANIMATED:
 		return"Animated";
 	default:
 		throw exception("There exists no such gendre.");
@@ -100,7 +97,6 @@ void operator<<(ostream& console, Event& event) {
 	console << "\n The date of the event is: " << event.date;
 	console << "\n The starting hour of the event is: " << event.startingHour;
 	console << "\n The duration of the event is: " << event.duration;
-	console << "\n The gendre of the event is: " << event.gendre;
 
 }
 
@@ -119,37 +115,7 @@ void operator>>(istream& console, Event& event) {
 	int newDuration;
 	console >> newDuration;
 	event.setDuration(newDuration);
-
-	//cout << "Insert the gendre";
-	//string newGendre;
-	//console >> newGendre;  //i dont know how to do this im sorry
-	cout << "Insert the gendre";
-	string gendre;
-	console >> gendre;
-	if (gendre == "ROMANCE")
-		event.setGendreType(ROMANCE);
-	else
-		if (gendre == "HORROR")
-			event.setGendreType(HORROR);
-		else
-			if
-				(gendre == "COMEDY")
-				event.setGendreType(COMEDY);
-			else
-				if
-					(gendre == "THRILLER")
-					event.setGendreType(THRILLER);
-				else
-					if(gendre == "ANIMATED")
-					event.setGendreType(ANIMATED);
-				else
-						if
-							(gendre == "DRAMA")
-							event.setGendreType(DRAMA);
-						else
-				throw exception("We dont have that gendre");
 }
-
 
 Event::Event() : eventName("No name") {
 	this->setDate("01/01/2020");
@@ -158,13 +124,13 @@ Event::Event() : eventName("No name") {
 	NO_RUNNING_EVENTS++;
 }
 
-Event::Event(const char* eventName, char* date, char* startingHour, int duration) : eventName(eventName) {
+Event::Event(string eventName, char* date, char* startingHour, int duration) : eventName(eventName) {
 	this->setDate(date);
 	this->setStartingHour(startingHour);
 	this->setDuration(duration);
 	NO_RUNNING_EVENTS++;
 }
-
+				
 Event::~Event() {
 	NO_RUNNING_EVENTS--;
 }
@@ -173,7 +139,6 @@ Event Event::operator=(const Event& OtherEvent) {
 	this->setDate(OtherEvent.date);
 	this->setDuration(OtherEvent.duration);
 	this->setStartingHour(OtherEvent.startingHour);
-	this->setGendreType(OtherEvent.gendre);
 	return *this;
 }
 

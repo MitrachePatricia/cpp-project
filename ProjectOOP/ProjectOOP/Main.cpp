@@ -27,14 +27,19 @@ using namespace std;
 				break;
 			case 1:
 				option1();
+				break;
 			case 2:
 				option2();
+				break;
 			case 3:
 				option3();
+				break;
 			case 4:
 				option4();
+				break;
 			default:
 				throw exception("Error!");
+				break;
 			}
 
 	}
