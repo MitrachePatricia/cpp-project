@@ -8,7 +8,8 @@ using namespace std;
 #include "Util.h"
 #include "MainMenu.h"
 
-	void MainMenu::baseMenu(int choice) {
+	void MainMenu::baseMenu() {
+		int choice;
 		cout << "//-----------------------------//" << endl;
 		cout << "//===Welcome to the app!=======//" << endl;
 		cout << "//===Please select an option===//" << endl;

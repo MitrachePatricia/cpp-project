@@ -3,7 +3,7 @@
 class MainMenu {
 public:
 
-	void baseMenu(int choice);
+	void baseMenu();
 
 	void option1();
 

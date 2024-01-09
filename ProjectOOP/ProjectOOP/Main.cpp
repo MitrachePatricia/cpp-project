@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string.h>
-using namespace std;
+#include <cstdlib>
 #include "Location.h"
 #include "Event.h"
 #include "Seat.h"
@@ -8,6 +8,10 @@ using namespace std;
 #include "Util.h"
 #include "MainMenu.h"
 
-int main() {
+using namespace std;
+
+int main(int argc,char* argv[]) {
+
 	MainMenu menu;
+	
 }
