@@ -1,6 +1,6 @@
 #pragma once
 
-class menu {
+class MainMenu {
 public:
 
 	void baseMenu(int choice);

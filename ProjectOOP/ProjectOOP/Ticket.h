@@ -17,7 +17,6 @@ private:
 	TicketType type;
 
 	static int NO_VALID_TICKETS;
-	static int getUniqueId();
 
 public:
 
@@ -52,4 +51,17 @@ public:
 
 	friend void operator<<(ostream& console, Ticket& newTicket);
 	friend void operator>>(istream& console, Ticket& newTicket);
+};
+
+class idGenerator {
+private:
+	const char allNumbers[11] = { "1234567890" };
+	const int MAXRAND = 6;
+
+public:
+	char* getUniqueId() {
+			char id[9];
+			for (int i = 0; i < 10; i++)
+				id[i] = allNumbers[rand() % MAXRAND];
+	}
 };

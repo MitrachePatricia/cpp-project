@@ -43,11 +43,6 @@ TicketType Ticket::getTicketType() {
 	return this->type;
 }
 
-int Ticket::getUniqueId() {
-	static atomic<uint32_t> ticketId{ 10 };    // found it here https://stackoverflow.com/questions/66951451/generate-a-unique-id-c
-	return ticketId;
-}
-
 Ticket::Ticket():ticketId(ticketId){
 	    this->setPrice(20);
 	    this->setTicketId("762A");
@@ -85,7 +80,6 @@ bool Ticket::operator<(int value) {
 
 void operator<<(ostream& console, Ticket& ticket) {
 	console << "*****************";
-	console << "\nThe ticket id is:" << ticket.getUniqueId();
 	console << "\nThe ticket price was:" << ticket.getPrice();
 	console << "\nThe ticket type is: " << ticket.getTicketType();
 }

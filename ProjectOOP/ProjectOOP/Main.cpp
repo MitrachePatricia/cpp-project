@@ -6,7 +6,8 @@ using namespace std;
 #include "Seat.h"
 #include "Ticket.h"
 #include "Util.h"
+#include "MainMenu.h"
 
 int main() {
-
+	MainMenu menu;
 }
