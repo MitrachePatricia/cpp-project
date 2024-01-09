@@ -7,7 +7,8 @@ class File {
 public:
 	static char fileName[];
 
-	void saveData(ofstream& file);
+	void openFile();
+	void saveData();
 	void loadData();
 	void readFile();
 };

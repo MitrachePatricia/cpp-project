@@ -5,12 +5,13 @@ using namespace std;
 
 int Event::NO_RUNNING_EVENTS = 0;
 
-void Event::setEventName(string newEventName) {
+void Event::setEventName(const char* newEventName) {
 	if (newEventName[0] < 'A' || newEventName[0]>'Z')
 		throw exception("There are no movies ");
 
-	this->eventName = newEventName;
+	this->eventName = Util::copyString(newEventName);
 }
+
 
 void Event::setDate(const char* newDate) {
 	if (strlen(newDate) != 10) {
@@ -20,7 +21,8 @@ void Event::setDate(const char* newDate) {
 		throw exception("The data format is wrong");
 	}
 	strcpy_s(this->date, newDate);
-}
+} 
+
 
 void Event::setStartingHour(const char* newStartingHour) {
 	if (strlen(newStartingHour) != 5) {
@@ -29,7 +31,7 @@ void Event::setStartingHour(const char* newStartingHour) {
 	if (newStartingHour[2] != ':') {
 		throw exception("The hour format is wrong");
 	}
-	if (newStartingHour[0] > 2||newStartingHour[1]<0)
+	if (newStartingHour[0] > 2 || newStartingHour[1] < 0)
 		throw exception("Wrong hour introduced");
 	if (newStartingHour[0] == 2 && newStartingHour[1] > 4)
 		throw exception("Wrong hour introduced");
@@ -124,7 +126,7 @@ Event::Event() : eventName("No name") {
 	NO_RUNNING_EVENTS++;
 }
 
-Event::Event(string eventName, char* date, char* startingHour, int duration) : eventName(eventName) {
+Event::Event(const char* eventName, const char* date, const char* startingHour, int duration) : eventName(eventName) {
 	this->setDate(date);
 	this->setStartingHour(startingHour);
 	this->setDuration(duration);

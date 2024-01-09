@@ -13,8 +13,9 @@ private:
 	int seatNumber;
 	char row;
 	//Location* Hall;
-	SeatType type;
+	//SeatType type;
 	bool isAvailable = true;
+	SeatType type;
 
 	const int NO_SEATS_PER_ROW = 10;
 

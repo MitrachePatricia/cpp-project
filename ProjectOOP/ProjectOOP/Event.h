@@ -5,12 +5,12 @@
 #include <string>
 #include <iostream>
 using namespace std;
-	
+
 enum GenreType { ROMANCE = 10, DRAMA, HORROR, THRILLER, COMEDY, ANIMATED };
 
 class Event {
 protected:
-	string eventName;
+	const char* eventName = nullptr;
 	char date[11];      // dd/mm/yyy
 	char startingHour[6];       // hh:mm
 	int duration = 0;       // in min
@@ -24,7 +24,7 @@ public:
 
 	//setters
 
-	void setEventName(string newEventName);
+	void setEventName(const char* newEventName);
 	void setDate(const char* newDate);
 	void setStartingHour(const char* newStartingHour);
 	void setDuration(int newDuration);
@@ -42,7 +42,7 @@ public:
 
 	//constructor with parameters
 
-	Event(string eventName, char* date, char* startingHour, int duration);
+	Event(const char* eventName, const char* date, const char* startingHour, int duration);
 
 	//destructor
 
@@ -58,6 +58,13 @@ public:
 	friend void operator<<(ostream& console, Event& newEvent);
 	friend void operator>>(istream& console, Event& newEvent);
 
+	//virtual
+
+	virtual void printEventInfo() {
+		cout << endl << "The event " << this->eventName << " will take place on "
+			<< this->date << " at " << this->startingHour << " and it's duration is " << this->duration << " minutes.";
+	}
+
 };
 
 class Movie :public Event {
@@ -67,14 +74,19 @@ class Movie :public Event {
 	GenreType getGenreType();
 	static string genreTypeToString(GenreType genre);
 public:
-	Movie(string name, char* date, char* startHour, int duration, GenreType type) : Event(name, date, startHour, duration) {
+	Movie(const char* name, const char* date, const char* startHour, int duration, GenreType type) : Event(name, date, startHour, duration) {
 		this->type = type;
+	}
+
+	void printMovieInfo() {
+		this->Event::printEventInfo();
+		cout << endl << "The genre of the movie is: " << this->type;
 	}
 };
 
 class Play :public Event {
 public:
-	Play(string name, char* date, char* startHour, int duration) : Event(name, date, startHour, duration) {
+	Play(const char* name, const char* date, const char* startHour, int duration) : Event(name, date, startHour, duration) {
 
 	}
 };
@@ -82,8 +94,8 @@ public:
 class Opera : public Event {
 	string singerName;
 public:
-	Opera(string name, char* date, char* startHour, int duration, string sName): 
-		Event(name, date, startHour, duration),singerName(sName) {
+	Opera(const char* name, const char* date, const char* startHour, int duration, string sName) :
+		Event(name, date, startHour, duration), singerName(sName) {
 
 	}
 };

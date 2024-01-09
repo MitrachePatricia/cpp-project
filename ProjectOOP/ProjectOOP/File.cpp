@@ -1,21 +1,31 @@
 #include <fstream>
 #include "File.h"
 #include "Event.h"
+#include "Ticket.h"
+#include <iostream>
 
 using namespace std;
 
 char File::fileName[] = "data.txt";
 
-void File::saveData(ofstream& file) {
-	if (!file.is_open()) 
-		throw exception("File is not opened");
+void File::openFile() {
+	ifstream dataGiven("data.txt");
 
+	if (!dataGiven.is_open()) {
+		throw exception("File is missing.");
+
+	}
 }
 
+
+
+/*
 void File::loadData() {
 	//insert location
-	Location Afi();
-	Location MegaMall();
+	Location Afi("Afi Cotroceni");
+	Location MegaMall("Mega Mall");
+	Location Theatre("Small Theatre Bucharest");
+	Location Opera1("Bucharest National Opera House");
 
 	//insert events
 	Movie* NES = new Movie("Nightmare on the Elm Street", "01 / 12 / 2024", "17:30", 85, HORROR);
@@ -28,4 +38,4 @@ void File::loadData() {
 
 	//WHY DOES IT SAY THAT THE NAME IS CONSTANT CHAR I CHANGED IT TO STRING????????????
 
-}
+}*/

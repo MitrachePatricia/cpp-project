@@ -9,10 +9,10 @@ private:
 	int locationId;
 	string Hall = "E1";  //Ex: A1-A9, E1-E9 etc.
 	unsigned int runningEvents=0;
+	//Event* eventName;
 
 	static int MAX_NO_SEATS;
-	static unsigned int TOTAL_LOCATIONS;
-
+	static int TOTAL_LOCATIONS;
 public:
 
 	//setters

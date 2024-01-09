@@ -1,6 +1,6 @@
 #pragma once
 
-class menu{
+class menu {
 public:
 
 	void baseMenu(int choice);
@@ -12,4 +12,5 @@ public:
 	void option3();
 
 	void option4();
-}
+
+};
